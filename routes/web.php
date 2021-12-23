@@ -18,10 +18,53 @@ Route::get('/', function () {
 });
 
 Auth::routes([
-'register' => false, //menghilangkan fitur regis
-'reset' => false, //menghilangkan fitur login
+'register' => false,
+'reset' => false,
 ]);
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'admin', 'middleware' => [
+    'auth',
+    'role:admin',
+]], function(){
+   Route::get('/', function(){
+     return 'halaman admin';
+
+   });
+
+   Route::get('profile', function(){
+       return 'halaman profile admin';
+   });
+});
+
+
+Route::group(['prefix' => 'pengguna', 'middleware' => [
+    'auth',
+    'role:pengguna',
+]], function(){
+   Route::get('/', function(){
+     return 'halaman pengguna';
+
+   });
+
+   Route::get('profile', function(){
+       return 'halaman profile pengguna';
+   });
+});
+
+Route::group(['prefix' => 'pembelian', 'middleware' => [
+    'auth',
+    'role:admin|kasir',
+]], function(){
+   Route::get('/', function(){
+     return 'halaman pembelian';
+
+   });
+
+   Route::get('laporan', function(){
+       return 'halaman profile pembelian';
+   });
+});
