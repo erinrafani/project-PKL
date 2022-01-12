@@ -13,14 +13,28 @@ class ApiUserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = User::where('id', 2)->get();
 
-        return response()->json([
-            'status' => true,
-            'code' => 200,
-            'message' => 'berhasil',
-            'data' => $user,
-        ]);
+        if ($user->count() >= 1) {
+
+            return response()->json([
+                'status' => true,
+                'code' => 200,
+                'message' => 'berhasil',
+                'data' => $user,
+            ]);
+
+        } else{
+
+            return response()->json([
+                'status' => true,
+                'code' => 404,
+                'message' => 'gagal',
+                'data' => $user,
+            ]);
+        }
+
+
     }
 
     /**
