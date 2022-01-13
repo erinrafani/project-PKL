@@ -20,4 +20,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::resource('User', ApiUserController::class);
+Route::resource('Kategori', ApiKategoriController::class);
 

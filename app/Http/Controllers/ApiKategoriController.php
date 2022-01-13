@@ -1,19 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
-class ApiUserController extends Controller
+class ApiKategoriController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $user = User::all();
+        $kategori = Kategori::all();
 
         // where('id', 2)->get();
 
@@ -23,7 +19,7 @@ class ApiUserController extends Controller
                 'status' => true,
                 'code' => 200,
                 'message' => 'berhasil',
-                'data' => $user,
+                'data' => $kategori,
             ]);
 
         // } else{
@@ -35,10 +31,7 @@ class ApiUserController extends Controller
         //         'data' => $user,
         //     ]);
         // }
-
-
     }
-
 
     public function create()
     {
@@ -48,37 +41,35 @@ class ApiUserController extends Controller
 
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
+        $kategori = new Kategori();
+        $kategori->nama_kategori = $request->nama_kategori;
+        $kategori->save();
         return response()->json([
             'status' => true,
             'code' => 201,
-            'message' => 'Data User Berhasil Dibuat',
-            'data' => $user,
+            'message' => 'Data Kategori Berhasil Dibuat',
+            'data' => $kategori,
         ]);
-
     }
 
 
     public function show($id)
     {
-        $user = User::find($id);
-        if ($user) {
+
+        $kategori = Kategori::find($id);
+        if ($kategori) {
             return response()->json([
                 'status' => true,
                 'code' => 200,
-                'message' => 'Show Data User',
-                'data' => $user,
+                'message' => 'Show Data Kategori',
+                'data' => $kategori,
             ]);
 
         } else {
             return response()->json([
                 'status' => false,
                 'code' => 404,
-                'message' => 'Data User Tidak Ditemukan',
+                'message' => 'Data Kategori Tidak Ditemukan',
                 'data' => [],
             ]);
         }
@@ -93,17 +84,15 @@ class ApiUserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        if ($user) {
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->save();
+        $kategori = Kategori::find($id);
+        if ($kategori) {
+            $kategori->nama_kategori = $request->nama_kategori;
+            $kategori->save();
             return response()->json([
                 'status' => true,
                 'code' => 201,
                 'message' => 'Data User Berhasil Dibuat',
-                'data' => $user,
+                'data' => $kategori,
             ]);
 
         } else {
@@ -119,21 +108,21 @@ class ApiUserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::find($id);
-        if ($user) {
-            $user->delete();
+        $kategori = Kategori::find($id);
+        if ($kategori) {
+            $kategori->delete();
             return response()->json([
                 'status' => true,
                 'code' => 200,
-                'message' => 'Data User Berhasil Di hapus',
-                'data' => $user,
+                'message' => 'Data kategori Berhasil Di hapus',
+                'data' => $kategori,
             ]);
 
         } else {
             return response()->json([
                 'status' => false,
                 'code' => 404,
-                'message' => 'Data User Tidak Ditemukan',
+                'message' => 'Data kategori Tidak Ditemukan',
                 'data' => [],
             ]);
         }
