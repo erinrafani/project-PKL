@@ -13,7 +13,7 @@ class CreateBarangTable extends Migration
             $table->id();
             $table->bigInteger('id_kategori')->unsigned();
             $table->string('nama_barang');
-            $table->string('nama_kategori');
+            // $table->string('nama_kategori');
             $table->integer('stok');
             $table->string('deskripsi');
             $table->string('harga');

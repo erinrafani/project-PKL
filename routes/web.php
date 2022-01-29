@@ -78,7 +78,41 @@ Route::group(['prefix' => 'admin', 'middileware'=> ['auth']], function(){
 
 });
 
+Route::get('/navbar',function(){
+    return view('partials.navbar');
+});
 
+Route::get('/footer',function(){
+    return view('partials.footer');
+});
+
+Route::get('/home1', function () {
+    return view('front.home');
+})->name('home1');
+
+Route::get('/bola', function () {
+    return view('front.sepakbola');
+})->name('bola');
+
+Route::get('/basket', function () {
+    return view('front.basket');
+})->name('basket');
+
+Route::get('/tenis', function () {
+    return view('front.tenis');
+})->name('tenis');
+
+Route::get('/badminton', function () {
+    return view('front.badminton');
+})->name('badminton');
+
+Route::get('/renang', function () {
+    return view('front.renang');
+})->name('renang');
+
+// Route::get('/kontak', function () {
+//     return view('front.kontak');
+// })->name('kontak');
 // Route::group(['prefix' => 'pembelian', 'middleware' => [
 //     'auth',
 //     'role:admin|kasir',

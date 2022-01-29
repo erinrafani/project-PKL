@@ -25,7 +25,7 @@
                         <table class="table">
                             <tr>
                                 <th>No</th>
-                                <th>Id</th>
+                                {{-- <th>Id</th> --}}
 
                                 <th>Nama Barang</th>
                                 <th>Nama Kategori</th>
@@ -39,9 +39,9 @@
                             @foreach ($barang as $data)
                              <tr>
                                  <td>{{$no++}}</td>
-                                 <td>{{$data->id}}</td>
+                                 {{-- <td>{{$data->id}}</td> --}}
                                  <td>{{$data->nama_barang}}</td>
-                                 <td>{{$data->nama_kategori}}</td>
+                                 <td>{{$data->kategori->nama_kategori}}</td>
                                  <td>{{$data->stok}}</td>
                                  <td>{{$data->deskripsi}}</td>
                                  <td>{{$data->harga}}</td>

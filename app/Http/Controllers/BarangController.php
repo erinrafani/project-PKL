@@ -17,7 +17,7 @@ class BarangController extends Controller
     public function index()
     {
         //
-        $barang = Barang::with('kategori')->get();
+        $barang = Barang::all();
         return view('barang.index', compact('barang'));
     }
 
@@ -41,11 +41,12 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->cover);
         //validasi data
         $validated = $request->validate([
             'id_kategori' => 'required',
             'nama_barang' => 'required',
-            'nama_kategori' => 'required',
+            // 'nama_kategori' => 'required',
             'stok' => 'required',
             'deskripsi' => 'required',
             'harga' => 'required',
@@ -53,18 +54,23 @@ class BarangController extends Controller
 
         ]);
 
+        $image = $request->cover;
+        $name = $image->getClientOriginalName();
+
         $barang = new Barang;
         $barang->id_kategori = $request->id_kategori;
         $barang->nama_barang = $request->nama_barang;
-        $barang->nama_kategori = $request->nama_kategori;
+        // $barang->nama_kategori = $request->nama_kategori;
         $barang->stok = $request->stok;
         $barang->deskripsi = $request->deskripsi;
         $barang->harga = $request->harga;
+        $barang->cover = $name;
+
+        // $image->move(public_path().' images/alat', $name);
         if ($request->hasFile('cover')) {
-            $barang->deleteImage();
             $image = $request->file('cover');
             $name = rand(1000, 9999) . $image->getClientOriginalName();
-            $image->move('images/alat/', $name);
+            $image->move('images/barang/', $name);
             $barang->cover = $name;
         }
         $barang->save();
@@ -94,7 +100,8 @@ class BarangController extends Controller
     {
         //
         $barang = Barang::findOrFail($id);
-        return view('barang.edit', compact('barang'));
+        $kategori = Kategori::all();
+        return view('barang.edit', compact('barang', 'kategori'));
     }
 
     /**
@@ -110,7 +117,7 @@ class BarangController extends Controller
         $validated = $request->validate([
             'id_kategori' => 'required',
             'nama_barang' => 'required',
-            'nama_kategori' => 'required',
+            // 'nama_kategori' => 'required',
             'stok' => 'required',
             'deskripsi' => 'required',
             'harga' => 'required',
@@ -120,7 +127,7 @@ class BarangController extends Controller
         $barang = Barang::findOrFail($id);
         $barang->id_kategori = $request->id_kategori;
         $barang->nama_barang = $request->nama_barang;
-        $barang->nama_kategori = $request->nama_kategori;
+        // $barang->nama_kategori = $request->nama_kategori;
         $barang->stok = $request->stok;
         $barang->deskripsi = $request->deskripsi;
         $barang->harga = $request->harga;
@@ -129,12 +136,11 @@ class BarangController extends Controller
             $barang->deleteImage();
             $image = $request->file('cover');
             $name = rand(1000, 9999) . $image->getClientOriginalName();
-            $image->move('images/alat/', $name);
+            $image->move(' images/alat', $name);
             $barang->cover = $name;
         }
         return redirect()->route('barang.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -149,4 +155,3 @@ class BarangController extends Controller
         return redirect()->route('barang.index');
     }
 }
-

@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-header">Data Barang</div>
                 <div class="card-body">
-                    <form action="{{route('barang.store')}}" method="post">
+                    <form action="{{route('barang.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="">Masukan Nama Barang</label>
@@ -31,12 +31,18 @@
                         </div>
                         <div class="form-group">
                             <label for="">Masukan Kategori</label>
-                            <input type="text" name="nama_kategori" class="form-control @error('nama_kategori') is-invalid @enderror">
+                            <select name="id_kategori" class="form-control @error('id_kategori') is-invalid @enderror">
+                                @foreach ($kategori as $key)
+                                    <option value = "{{$key->id}}">{{$key->nama_kategori}}</option>
+                                @endforeach
+                            </select>
+
+                            {{-- <input type="text" name="nama_kategori" class="form-control @error('nama_kategori') is-invalid @enderror">
                             @error('nama_kategori')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{message}}</strong>
                             </span>
-                            @enderror
+                            @enderror --}}
                         </div>
                         <div class="form-group">
                             <label for="">Stok</label>
@@ -67,10 +73,10 @@
                         </div>
                         <div class="form-group">
                             <label for="">Gambar </label>
-                            <input type="file" name="cover" class="form-control @error('cover') is-invalid @enderror">
+                            <input type="file" id = "cover" name="cover" class="form-control @error('cover') is-invalid @enderror">
                              @error('cover')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                    <strong>{{$message}}</strong>
                                 </span>
                             @enderror
                         </div>

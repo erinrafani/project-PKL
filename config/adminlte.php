@@ -45,8 +45,8 @@ return [
     |
      */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Muscle</b>',
+    'logo_img' => 'vendor/adminlte/dist/img/muscle.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -249,25 +249,25 @@ return [
         [
             'text' => 'Kategori',
             'url' => 'admin/kategori',
-            'icon' => 'far far-fw fa-file',
+            'icon' => 'far far-fw fad fa-list-alt',
         ],
 
         [
             'text' => 'Pembeli',
             'url' => 'admin/pembeli',
-            'icon' => 'far far-fw fa-file',
+            'icon' => 'far far-fw fas fa-user',
         ],
 
         [
             'text' => 'Barang',
             'url' => 'admin/barang',
-            'icon' => 'far far-fw fa-file',
+            'icon' => 'far far-fw fas fa-box-open',
         ],
 
         [
             'text' => 'Transaksi',
             'url' => 'admin/transaksi',
-            'icon' => 'far far-fw fa-file',
+            'icon' => 'far far-fw far fa-handshake',
         ],
 
     ],

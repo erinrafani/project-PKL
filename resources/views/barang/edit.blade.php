@@ -30,12 +30,19 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Masukan Nama Kategori</label>
-                                <input type="text" name="nama_kategori" value="{{$barang->nama_kategori}}" class="form-control @error('nama_kategori') is-invalid @enderror">
-                                @error('nama_barang')
-                                    <span class="invalid-feedback" role="alert"></span>
-                                    <strong>{{ $message }}</strong>
-                                @enderror
+                                <label for="">Masukan Kategori</label>
+                                <select name="id_kategori" class="form-control @error('id_kategori') is-invalid @enderror">
+                                    @foreach ($kategori as $key)
+                                        <option value = "{{$key->id}}">{{$key->nama_kategori}}</option>
+                                    @endforeach
+                                </select>
+
+                                {{-- <input type="text" name="nama_kategori" class="form-control @error('nama_kategori') is-invalid @enderror">
+                                @error('nama_kategori')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{message}}</strong>
+                                </span>
+                                @enderror --}}
                             </div>
                             <div class="form-group">
                                 <label for="">Stok</label>
@@ -59,6 +66,15 @@
                                 @error('harga')
                                     <span class="invalid-feedback" role="alert"></span>
                                     <strong>{{ $message }}</strong>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="">Gambar </label>
+                                <input type="file" id = "cover" name="cover" value="{{$barang->cover}}" class="form-control @error('cover') is-invalid @enderror">
+                                 @error('cover')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
                                 @enderror
                             </div>
                             <div class="form-group">
