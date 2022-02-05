@@ -25,7 +25,7 @@
                         <table class="table">
                             <tr>
                                 <th>No</th>
-                                <th>Id</th>
+                                {{-- <th>Id</th> --}}
                                 <th>Nama Kategori</th>
                                 <th>Aksi</th>
                             </tr>
@@ -33,7 +33,7 @@
                             @foreach ($kategori as $data)
                              <tr>
                                  <td>{{$no++}}</td>
-                                 <td>{{$data->id}}</td>
+                                 {{-- <td>{{$data->id}}</td> --}}
                                  <td>{{$data->nama_kategori}}</td>
                                  <td>
                                      <form action="{{route('kategori.destroy',$data->id)}}" method="post">

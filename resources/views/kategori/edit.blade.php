@@ -30,12 +30,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button type="reset" class="btn btn-outline-warning">Reset</button>
+                                <button type="reset" class="btn btn-outline-danger">Reset</button>
                                 <button type="submit" class="btn btn-outline-warning">Simpan</button>
+                                <a href="{{url('admin/kategori')}}" class="btn btn-outline-info">Kembali</a>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <a href="{{url('admin/kategori')}}" class="btn btn-block btn-outline-primary">Kembali</a>
-                            </div>
+                            </div> --}}
                         </form>
                 </div>
             </div>

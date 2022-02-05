@@ -34,7 +34,7 @@ Welcome to this beautiful admin panel.
 
 @section('content')
 
-    Welcome to this beautiful admin panel.
+    Selamat Datang Di Halaman Admin.
 
 @stop
 

@@ -110,6 +110,26 @@ Route::get('/renang', function () {
     return view('front.renang');
 })->name('renang');
 
+Route::get('/kontak', function () {
+    return view('front.kontak');
+})->name('kontak');
+
+Route::get('/detail', function () {
+    return view('front.detail');
+})->name('detail');
+
+Route::get('/checkout', function () {
+    return view('front.checkout');
+})->name('checkout');
+
+Route::get('/blog', function () {
+    return view('front.blog');
+})->name('blog');
+
+Route::get('/keranjang', function () {
+    return view('front.keranjang');
+})->name('keranjang');
+
 // Route::get('/kontak', function () {
 //     return view('front.kontak');
 // })->name('kontak');
@@ -132,4 +152,3 @@ Route::get('/renang', function () {
 //    'auth',
  //   'role:admin|kasir',
 // ])
-

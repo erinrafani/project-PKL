@@ -15,7 +15,7 @@ class CreatePembeliTable extends Migration
     {
         Schema::create('pembeli', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama_pembeli');
             $table->string('alamat');
             $table->string('no_hp');
             $table->string('email');

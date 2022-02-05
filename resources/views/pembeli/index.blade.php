@@ -25,7 +25,7 @@
                         <table class="table">
                             <tr>
                                 <th>No</th>
-                                <th>Id</th>
+                                {{-- <th>Id</th> --}}
                                 <th>Nama</th>
                                 <th>Alamat</th>
                                 <th>No Hp</th>
@@ -36,8 +36,8 @@
                             @foreach ($pembeli as $data)
                              <tr>
                                  <td>{{$no++}}</td>
-                                 <td>{{$data->id}}</td>
-                                 <td>{{$data->nama}}</td>
+                                 {{-- <td>{{$data->id}}</td> --}}
+                                 <td>{{$data->nama_pembeli}}</td>
                                  <td>{{$data->alamat}}</td>
                                  <td>{{$data->no_hp}}</td>
                                  <td>{{$data->email}}</td>

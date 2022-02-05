@@ -21,18 +21,39 @@
                     <form action="{{route('transaksi.store')}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="">Nama Pembeli</label>
-                            <input type="text" name="nama_pembeli" class="form-control @error('nama_pembeli') is-invalid @enderror">
-                            @error('nama_pembeli')
+                            <label for="">Masukan Nama Pembeli</label>
+                            <select name="id_pembeli" class="form-control @error('id_pembeli') is-invalid @enderror">
+                                @foreach ($pembeli as $data)
+                                    <option value = "{{$data->id}}">{{$data->nama_pembeli}}</option>
+                                @endforeach
+                            </select>
+                            @error('id_pembeli')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{message}}</strong>
                             </span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="">Nama Barang</label>
-                            <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror">
-                            @error('nama_barang')
+                            <label for="">Masukan Nama Barang</label>
+                            <select name="id_barang" class="form-control @error('id_barang') is-invalid @enderror">
+                                @foreach ($barang as $data)
+                                    <option value = "{{$data->id}}">{{$data->nama_barang}}</option>
+                                @endforeach
+                            </select>
+                            @error('id_pembeli')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{message}}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">Masukan Alamat</label>
+                            <select name="alamat" class="form-control @error('alamat') is-invalid @enderror">
+                                @foreach ($pembeli as $data)
+                                    <option value = "{{$data->id}}">{{$data->alamat}}</option>
+                                @endforeach
+                            </select>
+                            @error('alamat')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{message}}</strong>
                             </span>
@@ -47,7 +68,7 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="">Harga</label>
                             <input type="number" name="harga" class="form-control @error('harga') is-invalid @enderror">
                             @error('harga')
@@ -55,7 +76,7 @@
                                 <strong>{{message}}</strong>
                             </span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="">Jumlah</label>
                             <input type="number" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror">
@@ -65,7 +86,7 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="">Total</label>
                             <input type="number" name="total" class="form-control @error('total') is-invalid @enderror">
                             @error('total')
@@ -73,7 +94,7 @@
                                 <strong>{{message}}</strong>
                             </span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <button type="reset" class="btn btn-outline-warning">Reset</button>
                             <button type="submit" class="btn btn-outline-warning">Simpan</button>

@@ -22,7 +22,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Masukan Nama pembeli</label>
-                            <input type="text" name="nama" class="form-control @error('name') is-invalid @enderror">
+                            <input type="text" name="nama_pembeli" class="form-control @error('name') is-invalid @enderror">
                             @error('nama')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{message}}</strong>

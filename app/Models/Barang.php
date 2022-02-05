@@ -25,7 +25,7 @@ class Barang extends Model
     {
         //data model "author" bisa memiliki banyak data
         //dari model "book" melalui fk "author_id"
-        return $this->belongsTo('App\Models\Transaksi', 'nama_barang');
+        return $this->belongsTo('App\Models\Transaksi', 'id_barang');
     }
 
     public function image()

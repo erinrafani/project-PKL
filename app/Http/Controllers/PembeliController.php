@@ -41,14 +41,14 @@ class PembeliController extends Controller
     {
         //validasi data
         $validated = $request->validate([
-            'nama' => 'required',
+            'nama_pembeli' => 'required',
             'alamat' => 'required',
             'no_hp' => 'required',
             'email' => 'required',
         ]);
 
         $pembeli = new Pembeli;
-        $pembeli->nama = $request->nama;
+        $pembeli->nama_pembeli = $request->nama_pembeli;
         $pembeli->alamat = $request->alamat;
         $pembeli->no_hp = $request->no_hp;
         $pembeli->email = $request->email;
@@ -93,14 +93,14 @@ class PembeliController extends Controller
     {
         //
         $validated = $request->validate([
-            'nama' => 'required',
+            'nama_pembeli' => 'required',
             'alamat' => 'required',
             'no_hp' => 'required',
             'email' => 'required',
         ]);
 
         $pembeli = Pembeli::findOrFail($id);
-        $pembeli->nama = $request->nama;
+        $pembeli->nama_pembeli = $request->nama_pembeli;
         $pembeli->alamat = $request->alamat;
         $pembeli->no_hp = $request->no_hp;
         $pembeli->email = $request->email;

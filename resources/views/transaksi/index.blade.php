@@ -24,9 +24,11 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tr>
-                                <th>ID</th>
+                                <th>No</th>
                                 <th>Nama Pembeli</th>
                                 <th>Nama Barang</th>
+                                <th>Alamat</th>
+                                <th>Tanggal Beli</th>
                                 <th>Harga</th>
                                 <th>Jumlah</th>
                                 <th>Total</th>
@@ -36,8 +38,10 @@
                             @foreach ($transaksi as $data)
                              <tr>
                                  <td>{{$no++}}</td>
-                                 <td>{{$data->nama_pembeli}}</td>
-                                 <td>{{$data->nama_barang}}</td>
+                                 <td>{{$data->pembeli->nama_pembeli}}</td>
+                                 <td>{{$data->barang->nama_barang}}</td>
+                                 <td>{{$data->pembeli->alamat}}</td>
+                                 <td>{{$data->tanggal_beli}}</td>
                                  <td>{{$data->harga}}</td>
                                  <td>{{$data->jumlah}}</td>
                                  <td>{{$data->total}}</td>
@@ -46,7 +50,7 @@
                                         @method('delete')
                                         @csrf
                                         <a href="{{route('transaksi.edit',$data->id)}}" class="btn btn-outline-info">Edit</a>
-                                        {{-- <a href="{{route('kategori.show',$data->id)}}" class="btn btn-outline-warning">Show</a> --}}
+                                        <a href="{{route('transaksi.show',$data->id)}}" class="btn btn-outline-warning">Show</a>
                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin menghapusnya')">Delete</button>
                                         </form>
                                  </td>

@@ -13,8 +13,8 @@ class CreateTransaksiTable extends Migration
             $table->id();
             $table->bigInteger('id_pembeli')->unsigned();
             $table->bigInteger('id_barang')->unsigned();
-            $table->string('nama_pembeli');
-            $table->string('nama_barang');
+            // $table->string('nama_pembeli');
+            // $table->string('nama_barang');
             $table->string('alamat');
             $table->date('tanggal_beli');
             $table->string('harga');

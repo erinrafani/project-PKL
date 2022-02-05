@@ -23,7 +23,7 @@
                         <input type="text" name="nama_kategori" value="{{$kategori->nama_kategori}}" class="form-control" readonly>
                     </div>
                     <div class="form-group">
-                        <a href="{{url('admin/kategori')}}" class="btn btn-block btn-outline-primary">Kembali</a>
+                        <a href="{{url('admin/kategori')}}" class="btn btn-outline-info">Kembali</a>
                     </div>
                 </div>
             </div>

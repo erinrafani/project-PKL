@@ -23,7 +23,7 @@
                             @method('put')
                             <div class="form-group">
                                 <label for="">Masukan Nama</label>
-                                <input type="text" name="nama" value="{{$pembeli->nama}}" class="form-control @error('nama_kategori') is-invalid @enderror">
+                                <input type="text" name="nama_pembeli" value="{{$pembeli->nama_pembeli}}" class="form-control @error('name') is-invalid @enderror">
                                 @error('nama')
                                     <span class="invalid-feedback" role="alert"></span>
                                     <strong>{{ $message }}</strong>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Masukan Alamat</label>
-                                <input type="text" name="alamat" value="{{$pembeli->alamat}}" class="form-control @error('nama_kategori') is-invalid @enderror">
+                                <input type="text" name="alamat" value="{{$pembeli->alamat}}" class="form-control @error('name') is-invalid @enderror">
                                 @error('alamat')
                                     <span class="invalid-feedback" role="alert"></span>
                                     <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Masukan No Hp</label>
-                                <input type="number" name="no_hp" value="{{$pembeli->no_hp}}" class="form-control @error('nama_kategori') is-invalid @enderror">
+                                <input type="number" name="no_hp" value="{{$pembeli->no_hp}}" class="form-control @error('name') is-invalid @enderror">
                                 @error('no_hp')
                                     <span class="invalid-feedback" role="alert"></span>
                                     <strong>{{ $message }}</strong>
@@ -47,18 +47,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Masukan Email</label>
-                                <input type="text" name="email" value="{{$pembeli->email}}" class="form-control @error('nama_kategori') is-invalid @enderror">
+                                <input type="text" name="email" value="{{$pembeli->email}}" class="form-control @error('name') is-invalid @enderror">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert"></span>
                                     <strong>{{ $message }}</strong>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button type="reset" class="btn btn-outline-warning">Reset</button>
+                                <button type="reset" class="btn btn-outline-danger">Reset</button>
                                 <button type="submit" class="btn btn-outline-warning">Simpan</button>
-                            </div>
-                            <div class="form-group">
-                                <a href="{{url('admin/pembeli')}}" class="btn btn-block btn-outline-primary">Kembali</a>
+                                <a href="{{url('admin/kategori')}}" class="btn btn-outline-info">Kembali</a>
                             </div>
                         </form>
                 </div>

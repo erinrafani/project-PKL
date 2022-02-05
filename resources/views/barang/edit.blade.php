@@ -82,7 +82,7 @@
                                 <button type="submit" class="btn btn-outline-warning">Simpan</button>
                             </div>
                             <div class="form-group">
-                                <a href="{{url('admin/kategori')}}" class="btn btn-block btn-outline-primary">Kembali</a>
+                                <a href="{{url('admin/barang')}}" class="btn btn-block btn-outline-primary">Kembali</a>
                             </div>
                         </form>
                 </div>

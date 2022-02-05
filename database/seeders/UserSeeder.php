@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
 
 
         $userAdmin = new User();
-        $userAdmin->name = 'Erin Rafani';
+        $userAdmin->name = 'Admin';
         $userAdmin->email = 'admin@gmail.com';
         $userAdmin->password = Hash::make('12345678');
         $userAdmin->save();

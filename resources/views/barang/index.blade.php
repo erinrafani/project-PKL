@@ -51,7 +51,7 @@
                                         @method('delete')
                                         @csrf
                                         <a href="{{route('barang.edit',$data->id)}}" class="btn btn-outline-info">Edit</a>
-                                        {{-- <a href="{{route('kategori.show',$data->id)}}" class="btn btn-outline-warning">Show</a> --}}
+                                        <a href="{{route('barang.show',$data->id)}}" class="btn btn-outline-warning">Show</a>
                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin menghapusnya')">Delete</button>
                                         </form>
                                  </td>

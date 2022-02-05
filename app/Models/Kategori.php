@@ -17,6 +17,6 @@ class Kategori extends Model
     {
         //data model "author" bisa memiliki banyak data
         //dari model "book" melalui fk "author_id"
-        $this->hasMany('App\Models\Barang', 'nama_kategori');
+        return $this->hasMany('App\Models\Barang', 'nama_kategori');
     }
 }
