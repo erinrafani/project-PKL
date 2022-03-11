@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Kategori;
-use App\Models\Transaksi;
+use Alert;
 use App\Models\Barang;
-use App\Models\Pembeli;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -73,6 +72,7 @@ class BarangController extends Controller
             $image->move('images/barang/', $name);
             $barang->cover = $name;
         }
+        Alert::success('Data ' . $barang->nama_barang . ' Berhasil Di Tambah');
         $barang->save();
         return redirect()->route('barang.index');
     }

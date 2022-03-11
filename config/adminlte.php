@@ -237,10 +237,10 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'search',
+        // ],
         [
             'text' => 'blog',
             'url' => 'admin/blog',
@@ -269,6 +269,24 @@ return [
             'url' => 'admin/transaksi',
             'icon' => 'far far-fw far fa-handshake',
         ],
+
+        [
+            'text' => 'Laporan',
+            'url' => 'admin/report',
+            'icon' => 'fas fa-fw fa-file',
+        ],
+
+        // [
+        //     'text' => 'Laporan',
+        //     'url' => 'admin/transaksi',
+        //     'icon' => 'far far-fw far fa-handshake',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Laporan Penjualan',
+        //             'url' => 'admin/laporan',
+        //         ],
+        //     ],
+        // ],
 
     ],
 

@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+{{-- @extends('adminlte::page')
 @section('header')
 <div class="content-header">
     <div class="container-fluid">
@@ -37,12 +37,7 @@
                                     @endforeach
                                 </select>
 
-                                {{-- <input type="text" name="nama_kategori" class="form-control @error('nama_kategori') is-invalid @enderror">
-                                @error('nama_kategori')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{message}}</strong>
-                                </span>
-                                @enderror --}}
+
                             </div>
                             <div class="form-group">
                                 <label for="">Stok</label>
@@ -90,4 +85,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}

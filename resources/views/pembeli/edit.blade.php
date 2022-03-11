@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Masukan Alamat</label>
-                                <input type="text" name="alamat" value="{{$pembeli->alamat}}" class="form-control @error('name') is-invalid @enderror">
+                                <textarea type="file" name="alamat" value="{{$pembeli->alamat}}" class="form-control @error('alamat') is-invalid @enderror"></textarea>
                                 @error('alamat')
                                     <span class="invalid-feedback" role="alert"></span>
                                     <strong>{{ $message }}</strong>

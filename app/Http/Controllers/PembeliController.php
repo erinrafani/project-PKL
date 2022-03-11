@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Barang;
+
+use Alert;
 use App\Models\Pembeli;
-use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Validator;
 
 class PembeliController extends Controller
 {
@@ -40,18 +41,28 @@ class PembeliController extends Controller
     public function store(Request $request)
     {
         //validasi data
-        $validated = $request->validate([
-            'nama_pembeli' => 'required',
-            'alamat' => 'required',
-            'no_hp' => 'required',
-            'email' => 'required',
-        ]);
+        $rules = [
+            'nama_pembeli' => 'required|max:255|unique:pembeli',
+        ];
+
+        $message = [
+            'nama_pembeli.required' => 'nama pembeli harus di isi',
+            'nama_pembeli.unique' => 'nama pembeli sudah digunakan',
+            'name.max' => 'name maksimal 255 karakter',
+        ];
+
+        $validation = Validator::make($request->all(), $rules, $message);
+        if ($validation->fails()) {
+            Alert::error('Oops', 'Data yang anda input tidak valid, silahkan di ulang')->autoclose(2000);
+            return back()->withErrors($validation)->withInput();
+        }
 
         $pembeli = new Pembeli;
         $pembeli->nama_pembeli = $request->nama_pembeli;
         $pembeli->alamat = $request->alamat;
         $pembeli->no_hp = $request->no_hp;
         $pembeli->email = $request->email;
+        Alert::success('Data ' . $pembeli->nama_pembeli . ' Berhasil Di Tambah');
         $pembeli->save();
         return redirect()->route('pembeli.index');
     }

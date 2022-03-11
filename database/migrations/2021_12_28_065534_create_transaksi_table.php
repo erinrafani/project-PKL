@@ -15,11 +15,13 @@ class CreateTransaksiTable extends Migration
             $table->bigInteger('id_barang')->unsigned();
             // $table->string('nama_pembeli');
             // $table->string('nama_barang');
-            $table->string('alamat');
+            // $table->string('alamat');
             $table->date('tanggal_beli');
             $table->string('harga');
             $table->string('jumlah');
             $table->string('total');
+            $table->string('uang');
+            $table->string('kembalian');
 
             $table->foreign('id_pembeli')->references('id')
             ->on('pembeli')->onUpdate('cascade')

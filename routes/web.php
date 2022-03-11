@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\KategoriController;
-// use App\Http\Controllers\PembeliController;
-// use App\Http\Controllers\BarangController;
-// use App\Http\Controllers\TransaksiController;
+use App\Http\Controller\Article;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PembeliController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\TransaksiController;
+ use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +17,16 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes([
-'register' => false,
-'reset' => false,
+    'register' => false,
+    'reset' => false,
 ]);
-
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -44,7 +44,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //   });
 // });
 
-
 // Route::group(['prefix' => 'pengguna', 'middleware' => [
 //    'auth',
 //    'role:pengguna',
@@ -59,30 +58,32 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //    });
 // });
 
-Route::group(['prefix' => 'admin', 'middileware'=> ['auth']], function(){
-    Route::get('buku', function(){
-        return view ('buku.index');
+Route::group(['prefix' => 'admin', 'middileware' => ['auth']], function () {
+    Route::get('buku', function () {
+        return view('buku.index');
 
     })->middleware(['role:admin|pengguna']);
 });
 
-Route::group(['prefix' => 'admin', 'middileware'=> ['auth']], function(){
-    Route::get('pengarang', function(){
-        return view ('pengarang.index');
+Route::group(['prefix' => 'admin', 'middileware' => ['auth']], function () {
+    Route::get('pengarang', function () {
+        return view('pengarang.index');
     })->middleware(['role:admin']);;
 
     Route::resource('kategori', KategoriController::class)->middleware(['role:admin']);
     Route::resource('pembeli', PembeliController::class)->middleware(['role:admin']);
     Route::resource('barang', BarangController::class)->middleware(['role:admin']);
     Route::resource('transaksi', TransaksiController::class)->middleware(['role:admin']);
-
+    // Route::get('laporan', [TransaksiController::class, "laporan"]);
+    Route::get('report', [ReportController::class, 'transaksi'])->name('getTransaksi');
+    Route::post('report', [ReportController::class, 'reportTransaksi'])->name('reportTransaksi');
 });
 
-Route::get('/navbar',function(){
+Route::get('/navbar', function () {
     return view('partials.navbar');
 });
 
-Route::get('/footer',function(){
+Route::get('/footer', function () {
     return view('partials.footer');
 });
 
@@ -150,5 +151,5 @@ Route::get('/keranjang', function () {
 //Route::resource('book', BookController::class)
 //->middleware([
 //    'auth',
- //   'role:admin|kasir',
+//   'role:admin|kasir',
 // ])

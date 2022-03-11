@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Alert;
 
 class Barang extends Model
 {
@@ -44,4 +45,5 @@ class Barang extends Model
         }
 
     }
+
 }

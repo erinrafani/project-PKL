@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
+use App\Models\Kategori;
+use App\Models\Barang;
+use App\Models\Pembeli;
+use App\Models\Transaksi;
 // use Auth;
 use Illuminate\Http\Request;
 
@@ -14,7 +18,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        $kategori = Kategori::all();
+        $pembeli = Pembeli::all();
+        $barang = Barang::all();
+        $transaksi = Transaksi::all();
+        $count = DB::table('kategori', 'pembeli', 'barang', 'transaksi')->count();
+        return view('home', compact('kategori', 'pembeli', 'barang', 'transaksi' ,'count'));
     }
 
     // public function index()

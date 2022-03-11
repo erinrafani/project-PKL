@@ -10,8 +10,8 @@ class Transaksi extends Model
     use HasFactory;
 
     protected $table = "transaksi";
-    protected $visible = ['id_pembeli','id_barang','alamat','tanggal_beli','harga','jumlah','total'];
-    protected $fillable = ['id_pembeli','id_barang','alamat','tanggal_beli','harga','jumlah','total'];
+    protected $visible = ['id_pembeli', 'id_barang', 'alamat', 'tanggal_beli', 'harga', 'jumlah', 'total','uang','kembalian'];
+    protected $fillable = ['id_pembeli', 'id_barang', 'alamat', 'tanggal_beli', 'harga', 'jumlah', 'total','uang','kembalian'];
     public $timestamps = true;
 
     public function Barang()
@@ -25,6 +25,6 @@ class Transaksi extends Model
     {
         //data model "author" bisa memiliki banyak data
         //dari model "book" melalui fk "author_id"
-        return $this->belongsTo('App\Models\Pembeli', 'id');
+        return $this->belongsTo('App\Models\Pembeli', 'id_pembeli');
     }
 }

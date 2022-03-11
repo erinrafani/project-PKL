@@ -47,6 +47,14 @@
                         <input type="text" name="total" value="{{$transaksi->total}}" class="form-control" readonly>
                     </div>
                     <div class="form-group">
+                        <label for="">Uang</label>
+                        <input type="text" name="uang" value="{{$transaksi->uang}}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Kembalian</label>
+                        <input type="text" name="kembalian" value="{{$transaksi->kembalian}}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
                         <button type="reset" class="btn btn-outline-danger">Reset</button>
                         <button type="submit" class="btn btn-outline-warning">Simpan</button>
                         <a href="{{url('admin/transaksi')}}" class="btn btn-outline-info">Kembali</a>
