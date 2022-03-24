@@ -21,4 +21,4 @@ use Illuminate\Http\Request;
 // });
 
 Route::resource('User', ApiUserController::class);
-Route::resource('kategoris',KategoriController::class);
+Route::resource('kategori',KategoriController::class);
