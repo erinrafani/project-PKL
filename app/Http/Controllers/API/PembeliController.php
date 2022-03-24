@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Pembeli;
 use Illuminate\Http\Request;
 
-class KategoriController extends Controller
+class PembeliController extends Controller
 {
 
     public function index()
     {
-        $pembeli = Kategori::all();
+        $pembeli = Pembeli::all();
         return response()->json([
             'success' => true,
             'message' => 'Data Pembeli',
@@ -32,8 +32,11 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         // sesuaikan dengan field table masing-masing & modelnya
-        $pembeli = new Kategori();
-        $pembeli->nama_kategori = $request->nama_kategori;
+        $pembeli = new Pembeli();
+        $pembeli->nama_pembeli = $request->nama_pembeli;
+        $pembeli->alamat = $request->alamat;
+        $pembeli->no_hp = $request->no_hp;
+        $pembeli->email = $request->email;
         $pembeli->save();
         return response()->json([
             'success' => true,
@@ -46,7 +49,7 @@ class KategoriController extends Controller
     public function show($id)
     {
 
-        $pembeli = Kategori::find($id);
+        $pembeli = Pembeli::find($id);
         if ($kategori) {
             return response()->json([
                 'success' => true,
@@ -71,8 +74,11 @@ class KategoriController extends Controller
 
     public function update(Request $request, $id)
     {
-        $pembeli = Kategori::findOrFail($id);
-        $pembeli->nama_kategori = $request->nama_kategori;
+        $pembeli = Pembeli::findOrFail($id);
+        $pembeli->nama_pembeli = $request->nama_pembeli;
+        $pembeli->alamat = $request->alamat;
+        $pembeli->no_hp = $request->no_hp;
+        $pembeli->email = $request->email;
         $pembeli->save();
         return response()->json([
             'success' => true,
@@ -84,7 +90,7 @@ class KategoriController extends Controller
 
     public function destroy($id)
     {
-        $pembeli = Kategori::findOrFail($id);
+        $pembeli = Pembeli::findOrFail($id);
         $pembeli->delete();
         return response()->json([
             'success' => true,
