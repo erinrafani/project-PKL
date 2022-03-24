@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controller\Article;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PembeliController;
-use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransaksiController;
- use App\Http\Controllers\ReportController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +76,7 @@ Route::group(['prefix' => 'admin', 'middileware' => ['auth']], function () {
     // Route::get('laporan', [TransaksiController::class, "laporan"]);
     Route::get('report', [ReportController::class, 'transaksi'])->name('getTransaksi');
     Route::post('report', [ReportController::class, 'reportTransaksi'])->name('reportTransaksi');
+
 });
 
 Route::get('/navbar', function () {

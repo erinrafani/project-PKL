@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Alert;
+
 use App\Models\Barang;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
@@ -72,7 +72,6 @@ class BarangController extends Controller
             $image->move('images/barang/', $name);
             $barang->cover = $name;
         }
-        Alert::success('Data ' . $barang->nama_barang . ' Berhasil Di Tambah');
         $barang->save();
         return redirect()->route('barang.index');
     }
@@ -113,6 +112,7 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         //
         $validated = $request->validate([
             'id_kategori' => 'required',
@@ -122,24 +122,33 @@ class BarangController extends Controller
             'deskripsi' => 'required',
             'harga' => 'required',
             'cover' => 'required|image|max:2048',
+
         ]);
 
+        $image = $request->cover;
+        $name = $image->getClientOriginalName();
+
+        $barang = new Barang;
         $barang = Barang::findOrFail($id);
+        // $kategori = Kategori::all();
         $barang->id_kategori = $request->id_kategori;
         $barang->nama_barang = $request->nama_barang;
         // $barang->nama_kategori = $request->nama_kategori;
         $barang->stok = $request->stok;
         $barang->deskripsi = $request->deskripsi;
         $barang->harga = $request->harga;
+        $barang->cover = $name;
 
+        // $image->move(public_path().' images/alat', $name);
         if ($request->hasFile('cover')) {
-            $barang->deleteImage();
             $image = $request->file('cover');
             $name = rand(1000, 9999) . $image->getClientOriginalName();
-            $image->move(' images/alat', $name);
+            $image->move('images/barang/', $name);
             $barang->cover = $name;
         }
+        $barang->save();
         return redirect()->route('barang.index');
+
     }
     /**
      * Remove the specified resource from storage.
