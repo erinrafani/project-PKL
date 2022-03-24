@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApiUserController;
 use App\Http\Controllers\API\KategoriController;
 use App\Http\Controllers\API\PembeliController;
+use App\Http\Controllers\API\BarangController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -24,3 +25,4 @@ use Illuminate\Http\Request;
 Route::resource('User', ApiUserController::class);
 Route::resource('kategori',KategoriController::class);
 Route::resource('pembeli',PembeliController::class);
+Route::resource('barang',BarangController::class);
