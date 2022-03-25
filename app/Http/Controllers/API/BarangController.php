@@ -1,10 +1,12 @@
 <?php
+
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Kategori;
-use Illuminate\Http\Request;
+use DB;
 
 class BarangController extends Controller
 {
@@ -13,17 +15,36 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+     public function kategori()
     {
-        //
-        $barang = Barang::all();
+        $kategori = Kategori::all();
         return response()->json([
             'success' => true,
-            'message' => 'Data Kategori',
-            'data' => $barang,
+            'message' => 'Data kategori',
+            'data' => $kategori,
         ], 200);
     }
 
+
+    public function index()
+    {
+        // $artikel = Article::with('category')->get();
+        $barang = DB::table('barang')
+            ->join('kategori', 'barang.id_kategori', '=', 'id_kategori')
+            ->select('barang.nama_barang','kategori.nama_kategori','barang.stok','barang.deskripsi','barang.harga','barang.cover')
+            ->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'data artikel',
+            'data' => $barang,
+        ], 200);
+        // $barang = Barang::all();
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Data barang',
+        //     'data' => $barang,
+        // ], 200);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -32,8 +53,6 @@ class BarangController extends Controller
     public function create()
     {
         //
-        $kategori = Kategori::all();
-        return view('barang.create', compact('kategori'));
     }
 
     /**
@@ -44,23 +63,7 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->cover);
-        //validasi data
-        $validated = $request->validate([
-            'id_kategori' => 'required',
-            'nama_barang' => 'required',
-            // 'nama_kategori' => 'required',
-            'stok' => 'required',
-            'deskripsi' => 'required',
-            'harga' => 'required',
-            'cover' => 'required|image|max:2048',
-
-        ]);
-
-        $image = $request->cover;
-        $name = $image->getClientOriginalName();
-
-        $barang = new Barang;
+        $barang = new Barang();
         $barang->id_kategori = $request->id_kategori;
         $barang->nama_barang = $request->nama_barang;
         // $barang->nama_kategori = $request->nama_kategori;
@@ -79,7 +82,7 @@ class BarangController extends Controller
         $barang->save();
         return response()->json([
             'success' => true,
-            'message' => 'Data Kategori Berhasil dibuat',
+            'message' => 'Data Barang Berhasil dibuat',
             'data' => $barang,
         ], 201);
     }
@@ -87,71 +90,40 @@ class BarangController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Kategori  $kategori
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
         $barang = Barang::findOrFail($id);
-        if ($barang) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Show Data Kategori',
-                'data' => $barang,
-            ], 200);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data Kategori tidak ditemukan',
-                'data' => [],
-            ], 404);
-
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Show Data Barang',
+            'data' => $barang,
+        ], 200);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Kategori  $kategori
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $barang = Barang::findOrFail($id);
-        $kategori = Kategori::all();
-        return view('barang.edit', compact('barang', 'kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kategori  $kategori
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-
-        //
-        $validated = $request->validate([
-            'id_kategori' => 'required',
-            'nama_barang' => 'required',
-            // 'nama_kategori' => 'required',
-            'stok' => 'required',
-            'deskripsi' => 'required',
-            'harga' => 'required',
-            'cover' => 'required|image|max:2048',
-
-        ]);
-
-        $image = $request->cover;
-        $name = $image->getClientOriginalName();
-
-        $barang = new Barang;
         $barang = Barang::findOrFail($id);
-        // $kategori = Kategori::all();
         $barang->id_kategori = $request->id_kategori;
         $barang->nama_barang = $request->nama_barang;
         // $barang->nama_kategori = $request->nama_kategori;
@@ -168,28 +140,27 @@ class BarangController extends Controller
             $barang->cover = $name;
         }
         $barang->save();
+        $barang->save();
         return response()->json([
             'success' => true,
-            'message' => 'Data Kategori Berhasil diedit',
+            'message' => 'Data Barang Berhasil diedit',
             'data' => $barang,
         ], 201);
-
-
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Kategori  $author
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
         $barang = Barang::findOrFail($id);
         $barang->delete();
         return response()->json([
             'success' => true,
-            'message' => 'Data Kategori Berhasil hapus',
+            'message' => 'Data Barang Berhasil dihapus',
             'data' => $barang,
         ], 200);
     }
